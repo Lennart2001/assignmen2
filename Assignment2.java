@@ -9,8 +9,28 @@
 
 public class Assignment2 {
 
+
     /**
-     * STARTER CODE FOR PROBLEM 2: Maximum Subarray
+     * STARTER CODE FOR PROBLEM 2: Dominating Entry
+     *
+     * @param array the array which will be evaluated for containing a dominant entry
+     * @return the dominating entry, will return null if there is no dominating entry (return type Integer)
+     */
+    public static Integer dominant(int[] array) {
+        // ADD CODE TO COMPLETE THIS METHOD
+        // HINT: you will need to create a private recursive method (similar to maxSubArray())
+
+        if (array.length == 0) {
+            return null;
+        }
+        else if (array == null) {
+            return null;
+        }
+        return 0;
+    }
+
+    /**
+     * STARTER CODE FOR PROBLEM 3: Maximum Subarray
      *
      * @param array the array where the maximum subarray will be found
      * @return the sum of the subarray with the maximum sum
@@ -28,7 +48,7 @@ public class Assignment2 {
     }
 
     /**
-     * STARTER CODE FOR PROBLEM 2: Maximum Subarray
+     * STARTER CODE FOR PROBLEM 3: Maximum Subarray
      *
      * @param array the array where the maximum subarray will be found
      * @param start the starting index where the recursive method will check
@@ -53,25 +73,6 @@ public class Assignment2 {
 
 
         return -1;  // You will want to change this return value
-    }
-
-    /**
-     * STARTER CODE FOR PROBLEM 3: Dominating Entry
-     *
-     * @param array the array which will be evaluated for containing a dominant entry
-     * @return the dominating entry, will return null if there is no dominating entry (return type Integer)
-     */
-    public static Integer dominant(int[] array) {
-        // ADD CODE TO COMPLETE THIS METHOD
-        // HINT: you will need to create a private recursive method (similar to maxSubArray())
-
-        if (array.length == 0) {
-            return null;
-        }
-        else if (array == null) {
-            return null;
-        }
-        return 0;
     }
 
 
