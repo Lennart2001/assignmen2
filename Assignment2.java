@@ -16,6 +16,51 @@ public class Assignment2 {
      * @param array the array which will be evaluated for containing a dominant entry
      * @return the dominating entry, will return null if there is no dominating entry (return type Integer)
      */
+
+    // we simply iterate through the array and count the occurences of "value"
+    // This is O(n) time
+    private static int countOccurrences(int[] array, int start, int end, int value) {
+        int count = 0;
+        for (int i = start; i <= end; i++) {
+            if (array[i] == value) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // we split the array in half -> O(log_2(n)) time
+    // Generally great stuff
+    private static Integer findDominantElement(int[] array, int start, int end) {
+        if (start == end) {
+            return array[start];
+        }
+
+        int mid = (start + end) / 2;
+        Integer leftDominant = findDominantElement(array, start, mid);
+        Integer rightDominant = findDominantElement(array, mid + 1, end);
+
+        // immediate checker if both have same outcome
+        if (leftDominant != null && leftDominant.equals(rightDominant)) {
+            return leftDominant;
+        }
+
+        // gives a little buffer so we get zero when findDominantElement returns null
+        int leftCount = leftDominant == null ? 0 : countOccurrences(array, start, end, leftDominant);
+        int rightCount = rightDominant == null ? 0 : countOccurrences(array, start, end, rightDominant);
+        int half = (end - start + 1) / 2;
+
+        // check which one has majority
+        if (leftCount > half) {
+            return leftDominant;
+        } else if (rightCount > half) {
+            return rightDominant;
+        } else {
+            // if neither have majority
+            return null;
+        }
+    }
+
     public static Integer dominant(int[] array) {
         // ADD CODE TO COMPLETE THIS METHOD
         // HINT: you will need to create a private recursive method (similar to maxSubArray())
@@ -23,10 +68,8 @@ public class Assignment2 {
         if (array.length == 0) {
             return null;
         }
-        else if (array == null) {
-            return null;
-        }
-        return 0;
+        // call the recursive function
+        return findDominantElement(array, 0, array.length - 1);
     }
 
     /**
