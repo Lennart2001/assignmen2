@@ -2,7 +2,7 @@
  * CISC 380
  *
  * Starter code for Assignment 2
- * @author Lennart Buhl
+ * @author YOUR NAME HERE
  * Due Date: xx/xx/xx
  */
 
@@ -37,49 +37,23 @@ public class Assignment2 {
      * Note: this method will return 0 if the length of the array is 0 and will be negative if the
      * array contains only negative numbers
      */
-    private static int maxSubArrayRecursive(int[] array, int left, int right) {
-        // base case
-        if (left == right) {
-            return array[left];
-        }
+    private static int maxSubArrayRecursive(int[] array, int start, int end) {
+        // ADD CODE TO COMPLETE THIS METHOD
+        // HINT: you will need to add a base case and change the return value
+        int mid;
+        int maxLeft;
+        int maxRight;
 
-        // simple middle
-        int mid = left + (right - left) / 2;
+        mid = (start + end) / 2;
 
-        int maxLeftSum = maxSubArrayRecursive(array, left, mid);
-        int maxRightSum = maxSubArrayRecursive(array, mid + 1, right);
+        //HINT: you will need to use maxLeft and maxRight in your solution
+        //maxLeft = maxSubArrayRecursive(array, start, mid);
+        //maxRight = maxSubArrayRecursive(array, mid+1, end);
 
-        // find the maximum that crosses midpoint
-        int maxCrossingSum = maxCrossingSubArray(array, left, mid, right);
 
-        // simply return max of thr three sums
-        return Math.max(Math.max(maxLeftSum, maxRightSum), maxCrossingSum);
+
+        return -1;  // You will want to change this return value
     }
-
-    private static int maxCrossingSubArray(int[] array, int left, int mid, int right) {
-        int sum = 0;
-        int leftSum = Integer.MIN_VALUE;
-        int rightSum = Integer.MIN_VALUE;
-
-        for (int i = mid; i >= left; i--) {
-            sum += array[i];
-            if (sum > leftSum) {
-                leftSum = sum;
-            }
-        }
-
-        sum = 0; // just reset the sum
-        for (int j = mid + 1; j <= right; j++) {
-            sum += array[j];
-            if (sum > rightSum) {
-                rightSum = sum;
-            }
-        }
-
-        return leftSum + rightSum;
-    }
-
-
 
     /**
      * STARTER CODE FOR PROBLEM 3: Dominating Entry
