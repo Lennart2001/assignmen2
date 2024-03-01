@@ -100,22 +100,57 @@ public class Assignment2 {
      * Note: this method will return 0 if the length of the array is 0 and will be negative if the
      * array contains only negative numbers
      */
+
+    // calculates the max sum of a subarary that crosses the midpoint
+    private static int crossSum(int[] array, int start, int mid, int end) {
+        if (start == end) {
+            return array[start];
+        }
+        // initialize the leftSum/rightSum + sum varibale
+        int leftSum = Integer.MIN_VALUE;
+        int rightSum = Integer.MIN_VALUE;
+        int sum = 0;
+
+        // count backwards
+        for (int i = mid; i >= start; i--) {
+            sum += array[i];
+            if (sum > leftSum) {
+                leftSum = sum;
+            }
+        }
+
+        sum = 0; // reset
+        // count forwards
+        for (int i = mid + 1; i <= end; i++) {
+            sum += array[i];
+            if (sum > rightSum) {
+                rightSum = sum;
+            }
+        }
+
+        // return their sum
+        return leftSum + rightSum;
+    }
+
     private static int maxSubArrayRecursive(int[] array, int start, int end) {
         // ADD CODE TO COMPLETE THIS METHOD
         // HINT: you will need to add a base case and change the return value
-        int mid;
-        int maxLeft;
-        int maxRight;
 
-        mid = (start + end) / 2;
+        // Got rid of variables here
 
-        //HINT: you will need to use maxLeft and maxRight in your solution
-        //maxLeft = maxSubArrayRecursive(array, start, mid);
-        //maxRight = maxSubArrayRecursive(array, mid+1, end);
+        // simple base case - if start equals end return the only element in array
+        if (start == end) {
+            return array[start];
+        }
 
+        int mid = (start + end) / 2;
+        int maxLeft = maxSubArrayRecursive(array, start, mid);
+        int maxRight = maxSubArrayRecursive(array, mid + 1, end);
+        int maxCross = crossSum(array, start, mid, end);
 
+        // simply retunr the max of the three values
+        return Math.max(Math.max(maxLeft, maxRight), maxCross);
 
-        return -1;  // You will want to change this return value
     }
 
 
