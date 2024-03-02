@@ -10,7 +10,7 @@ import java.util.*;
  * the brute force and Divide & Conquer algorithms to find a hill.
  * 
  * 
- * @author YOUR NAME HERE
+ * @author Jack Lewis and Lennart Buhl
  * Due Date: xx/xx/xx
  */
 
