@@ -2,7 +2,7 @@
  * CISC 380
  *
  * Starter code for Assignment 2
- * @author YOUR NAME HERE
+ * @author Jack Lewis and Lennart Buhl
  * Due Date: xx/xx/xx
  */
 
@@ -162,9 +162,32 @@ public class Assignment2 {
      * @return - the index of a hill within the array
      */
     public static int bruteHill(int[] arr){
+        // Check if the arr is more than 1 element
+        if (arr.length < 2) {
+            return -1;
+        }
 
-        // ADD CODE TO COMPLETE THIS METHOD
+        // Check if there is a hill at index 0
+        if (arr[0] >= arr[1]) {
+            return 0;
+        }
 
+        // Check all other indexes
+        for (int i = 1; i < arr.length - 1; i++) {
+            int prev = arr[i - 1];
+            int curr = arr[i];
+            int next = arr[i + 1];
+            if (curr >= prev && curr >= next){
+                return i;
+            }
+        }
+
+        // Check if there is a hill at index n
+        if (arr[arr.length - 1] >= arr[arr.length - 2]) {
+            return arr.length - 1;
+        }
+
+        // There is no hill
         return -1;
     }
 
