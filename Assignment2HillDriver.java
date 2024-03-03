@@ -233,7 +233,7 @@ public class Assignment2HillDriver {
 		long result = -1;
 		
 			long start  = System.nanoTime();
-			Assignment2.divideAndConquerHill(array);
+			Assignment2.divideAndConquerHill(array, 0, array.length - 1);
 			long end    =  System.nanoTime();
 			result = end - start;
 
