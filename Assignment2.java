@@ -157,7 +157,18 @@ public class Assignment2 {
     /**
      * STARTER CODE FOR PROBLEM 5a: Brute Force Hill
      *
-     * Implements a brute force approach to finding a hill in an array
+     * Explaination:
+     * Implements a brute force approach to finding a hill in an array.
+     * The algorithm starts by checking if there are less than 2 elements in the array. If so, there are no hills and -1 is returned.
+     * Then it checks to see if there is a hill at index 0. 
+     * If there isn't a hill at index 0, it then starts to check all other indices until it finds a hill. 
+     * Finally it checks the nth index for a hill. 
+     * If there are no hills found at this point, there are no hills in the array and -1 is returned.
+     * 
+     * Analysis:
+     * A maximum of n indices are checked, and a constant amount of work is done at each check. 
+     * Therefore T(n) = theta(n).
+     * 
      * @param arr - an array of integers
      * @return - the index of a hill within the array
      */
@@ -196,14 +207,39 @@ public class Assignment2 {
      * STARTER CODE FOR PROBLEM 5b: Divide and Conquer Hill
      *
      * Implements a divide and conquer approach to finding a hill in an array
+     * 
+     * Recurrance relation: 
+     * A recursive call is made on the subproblem with half the size
+     * A constant amount of other work is done on each call.
+     * Therefore, T(n) = T(n/2) + c
+     * 
+     * Analysis:
+     * We can solve this recurrance with the master theorem. 
+     * In this case, a = 1, b = 2, and k = 0.
+     * Therefore, T(n) = theta(log n)
+     * 
      * @param arr - an array of integers
      * @return - the index of a hill within the array
      */
-    public static int divideAndConquerHill(int[] arr){
+    public static int divideAndConquerHill(int[] arr, int start, int end){
+        // Base case for when n <= 2
+        if (end - start + 1 <= 2) {
+            if (arr[start] > arr[end]) {
+                return start;
+            } else {
+                return end;
+            }
+        }
 
-        // ADD CODE TO COMPLETE THIS METHOD
+        int mid = Math.round((start + end + 1) / 2);
+        int mid1 = arr[mid - 1];
+        int mid2 = arr[mid];
 
-        return -1;
+        if (mid1 > mid2) {
+            return divideAndConquerHill(arr, start, mid - 1);
+        } else {
+            return divideAndConquerHill(arr, mid, end);
+        }
     }
 
 }
